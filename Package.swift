@@ -18,6 +18,9 @@ let package = Package(
             targets: ["Later"]
         )
     ],
+    dependencies: [
+        .package(url: "https://github.com/swiftlang/swift-testing.git", from: "0.11.0")
+    ],
     targets: [
         .target(
             name: "Later",
@@ -28,7 +31,10 @@ let package = Package(
         ),
         .testTarget(
             name: "LaterTests",
-            dependencies: ["Later"]
+            dependencies: [
+                "Later",
+                "swift-testing"
+            ]
         )
     ]
 )
