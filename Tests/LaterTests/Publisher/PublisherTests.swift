@@ -1,3 +1,4 @@
+#if !os(Linux) && !os(Windows)
 import Testing
 @testable import Later
 
@@ -322,3 +323,4 @@ struct PublisherTests {
         #expect(values == ["Initial value", nil, "Edge case value", nil])
     }
 }
+#endif

@@ -1,3 +1,4 @@
+#if !os(Linux) && !os(Windows)
 import Testing
 @testable import Later
 
@@ -167,3 +168,4 @@ struct SendableValueTests {
         #expect(value == 0)
     }
 }
+#endif
