@@ -1,3 +1,4 @@
+#if !os(Linux) && !os(Windows)
 import os
 
 @available(macOS 13.0, iOS 16.0, tvOS 16.0, watchOS 9.0, *)
@@ -32,3 +33,4 @@ public struct SendableValue<Value: Sendable>: Sendable {
         }
     }
 }
+#endif

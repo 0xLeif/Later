@@ -19,6 +19,7 @@ let package = Package(
         )
     ],
     dependencies: [
+        // Used for GitHub CI
         .package(url: "https://github.com/swiftlang/swift-testing.git", exact: "0.8.0")
     ],
     targets: [
@@ -33,6 +34,7 @@ let package = Package(
             name: "LaterTests",
             dependencies: [
                 "Later",
+                // Used for GitHub CI
                 .product(name: "Testing", package: "swift-testing")
             ]
         )
