@@ -124,7 +124,7 @@ Task {
 }
 ```
 
-### Publisher and Subscribing TODO
+### Publisher and Subscribing
 
 A `Publisher` allows objects to subscribe to changes in data and notifies subscribers when the data changes.
 
