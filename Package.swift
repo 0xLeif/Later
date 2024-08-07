@@ -19,7 +19,7 @@ let package = Package(
         )
     ],
     dependencies: [
-        .package(url: "https://github.com/swiftlang/swift-testing.git", from: "0.8.0")
+        .package(url: "https://github.com/swiftlang/swift-testing.git", exact: "0.8.0")
     ],
     targets: [
         .target(
@@ -33,7 +33,7 @@ let package = Package(
             name: "LaterTests",
             dependencies: [
                 "Later",
-                "swift-testing"
+                .product(name: "Testing", package: "swift-testing")
             ]
         )
     ]
