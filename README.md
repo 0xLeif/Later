@@ -1,6 +1,6 @@
 # Later
 
-`Later` is a lightweight Swift library designed to simplify asynchronous programming by providing foundational building blocks such as `Future`, `Deferred`, `Stream`, and `Publisher`. These components enable you to manage and coordinate asynchronous tasks, making it easier to write clean and maintainable code.
+`Later` is a lightweight Swift 6 library designed to simplify asynchronous programming by providing foundational building blocks such as `Future`, `Deferred`, `Stream`, and `Publisher`. These components enable you to manage and coordinate asynchronous tasks, making it easier to write clean and maintainable code.
 
 ## Features
 
