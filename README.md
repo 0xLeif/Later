@@ -17,23 +17,23 @@
 
 To start using **Later**, follow our [Installation Guide](documentation/installation.md) which provides step-by-step instructions for adding **Later** to your Swift project using Swift Package Manager.
 
-After installation, explore our [Usage Overview](03-usage-overview.md) to see how to implement each of the key features in your own code. From simple examples to more in-depth explorations, these guides will help you integrate **Later** into your asynchronous workflows effectively.
+After installation, explore our [Usage Overview](documentation/usage-overview.md) to see how to implement each of the key features in your own code. From simple examples to more in-depth explorations, these guides will help you integrate **Later** into your asynchronous workflows effectively.
 
 ## Documentation
 
 Here’s a breakdown of the **Later** documentation:
 
-- [Installation Guide](01-installation.md): Instructions on how to install **Later** using Swift Package Manager.
-- [Usage Overview](03-usage-overview.md): An overview of **Later**'s key features with example implementations.
+- [Installation Guide](documentation/installation.md): Instructions on how to install **Later** using Swift Package Manager.
+- [Usage Overview](documentation/usage-overview.md): An overview of **Later**'s key features with example implementations.
 - Detailed Usage Guides:
-  - [SendableValue Usage](usage-sendablevalue.md)
-  - [Future Usage](usage-future.md)
-  - [Deferred Usage](usage-deferred.md)
-  - [Stream Usage](usage-stream.md)
-  - [Publisher and Subscribing Usage](usage-publisher.md)
-  - [Schedule Task Usage](usage-schedule-task.md)
-- [Contributing](contributing.md): Information on how to contribute to the **Later** project.
+  - [SendableValue Usage](documentation/usage-sendablevalue.md)
+  - [Future Usage](documentation/usage-future.md)
+  - [Deferred Usage](documentation/usage-deferred.md)
+  - [Stream Usage](documentation/usage-stream.md)
+  - [Publisher and Subscribing Usage](documentation/usage-publisher.md)
+  - [Schedule Task Usage](documentation/usage-schedule-task.md)
+- [Contributing](documentation/contributing.md): Information on how to contribute to the **Later** project.
 
 ## Next Steps
 
-To continue, head over to our [Installation Guide](01-installation.md) and get **Later** set up in your project. After installation, you can dive into the [Usage Overview](03-usage-overview.md) to see how to start leveraging the power of asynchronous programming with **Later**.
+To continue, head over to our [Installation Guide](documentation/installation.md) and get **Later** set up in your project. After installation, you can dive into the [Usage Overview](documentation/usage-overview.md) to see how to start leveraging the power of asynchronous programming with **Later**.
