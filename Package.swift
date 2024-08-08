@@ -1,4 +1,4 @@
-// swift-tools-version: 5.10
+// swift-tools-version: 6.0
 
 import PackageDescription
 
@@ -18,24 +18,13 @@ let package = Package(
             targets: ["Later"]
         )
     ],
-    dependencies: [
-        // Used for GitHub CI
-        .package(url: "https://github.com/swiftlang/swift-testing.git", exact: "0.8.0")
-    ],
     targets: [
         .target(
-            name: "Later",
-            swiftSettings: [
-                .enableExperimentalFeature("StrictConcurrency")
-            ]
+            name: "Later"
         ),
         .testTarget(
             name: "LaterTests",
-            dependencies: [
-                "Later",
-                // Used for GitHub CI
-                .product(name: "Testing", package: "swift-testing")
-            ]
+            dependencies: ["Later"]
         )
     ]
 )
