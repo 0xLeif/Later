@@ -15,7 +15,7 @@
 
 ## Getting Started
 
-To start using **Later**, follow our [Installation Guide](01-installation.md) which provides step-by-step instructions for adding **Later** to your Swift project using Swift Package Manager.
+To start using **Later**, follow our [Installation Guide](documentation/installation.md) which provides step-by-step instructions for adding **Later** to your Swift project using Swift Package Manager.
 
 After installation, explore our [Usage Overview](03-usage-overview.md) to see how to implement each of the key features in your own code. From simple examples to more in-depth explorations, these guides will help you integrate **Later** into your asynchronous workflows effectively.
 
