@@ -26,8 +26,7 @@ let package = Package(
         .target(
             name: "Later",
             swiftSettings: [
-                .enableExperimentalFeature("StrictConcurrency"),
-                .unsafeFlags(["-warnings-as-errors"])
+                .enableExperimentalFeature("StrictConcurrency")
             ]
         ),
         .testTarget(
