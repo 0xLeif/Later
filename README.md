@@ -1,15 +1,15 @@
 # Later
 
-`Later` is a lightweight Swift 6 library designed to simplify asynchronous programming by providing foundational building blocks such as `Future`, `Deferred`, `Stream`, `SendableValue`, and `Publisher`. These components enable you to manage and coordinate asynchronous tasks, making it easier to write clean and maintainable code.
+`Later` is a lightweight Swift 6 library designed to simplify asynchronous programming by providing foundational building blocks such as `SendableValue`, `Future`, `Deferred`, `Stream`, and `Publisher`. These components enable you to manage and coordinate asynchronous tasks, making it easier to write clean and maintainable code.
 
 ## Features
 
+- **SendableValue**: A generic [`Sendable`](https://developer.apple.com/documentation/swift/sendable) value that uses [`OSAllocatedUnfairLock`](https://developer.apple.com/documentation/os/osallocatedunfairlock).
 - **Future**: Represents a value that will be available asynchronously in the future.
 - **Deferred**: Represents a value that will be computed and available asynchronously when explicitly started.
 - **Stream**: Represents an asynchronous sequence of values emitted over time.
 - **Publisher**: Allows objects to subscribe to changes in state or data and notifies subscribers when the state or data changes.
 - **Subscribing**: A protocol for objects that want to observe changes in state or data.
-- **SendableValue**: A generic [`Sendable`](https://developer.apple.com/documentation/swift/sendable) value that uses [`OSAllocatedUnfairLock`](https://developer.apple.com/documentation/os/osallocatedunfairlock).
 
 ## Installation
 
@@ -33,6 +33,19 @@ And add it to your target’s dependencies:
 ```
 
 ## Usage
+
+### SendableValue
+
+SendableValue is a thread-safe value-type wrapper for a value that can be safely shared across concurrent tasks. It allows you to set and retrieve the value asynchronously.
+
+```swift
+let sendableValue = SendableValue<Int>(42)
+sendableValue.set(value: 100)
+let value = await sendableValue.value
+#expect(value == 100)
+```
+
+This ensures that the value is safely managed across different contexts, providing a simple way to handle mutable state in concurrent programming.
 
 ### Future
 
@@ -217,19 +230,6 @@ do {
     print("Failed to execute task: \(error)")
 }
 ```
-
-### SendableValue
-
-SendableValue is a thread-safe wrapper for a value that can be safely shared across concurrent tasks. It allows you to set and retrieve the value asynchronously.
-
-```swift
-let sendableValue = SendableValue<Int>(42)
-sendableValue.set(value: 100)
-let value = await sendableValue.value
-#expect(value == 100)
-```
-
-This ensures that the value is safely managed across different contexts, providing a simple way to handle mutable state in concurrent programming.
 
 ## Contributing
 
