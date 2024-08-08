@@ -1,236 +1,39 @@
 # Later
 
-`Later` is a lightweight Swift 6 library designed to simplify asynchronous programming by providing foundational building blocks such as `SendableValue`, `Future`, `Deferred`, `Stream`, and `Publisher`. These components enable you to manage and coordinate asynchronous tasks, making it easier to write clean and maintainable code.
+**Later** is a Swift 6 library that simplifies asynchronous programming by offering simple building blocks for managing concurrency. **Later** helps you write clean, maintainable code that efficiently handles complex asynchronous tasks.
 
-## Features
+## Key Features
 
-- **SendableValue**: A generic [`Sendable`](https://developer.apple.com/documentation/swift/sendable) value that uses [`OSAllocatedUnfairLock`](https://developer.apple.com/documentation/os/osallocatedunfairlock).
-- **Future**: Represents a value that will be available asynchronously in the future.
-- **Deferred**: Represents a value that will be computed and available asynchronously when explicitly started.
-- **Stream**: Represents an asynchronous sequence of values emitted over time.
-- **Publisher**: Allows objects to subscribe to changes in state or data and notifies subscribers when the state or data changes.
-- **Subscribing**: A protocol for objects that want to observe changes in state or data.
+**Later** offers a range of tools to make asynchronous programming more straightforward and efficient:
 
-## Installation
+- **SendableValue**: A generic [`Sendable`](https://developer.apple.com/documentation/swift/sendable) value that ensures thread safety using [`OSAllocatedUnfairLock`](https://developer.apple.com/documentation/os/osallocatedunfairlock).
+- **Future**: Represents a value that will be available asynchronously in the future, enabling you to handle tasks that take time to complete.
+- **Deferred**: Represents a value that will be computed and available asynchronously when explicitly started, giving you control over when a task begins.
+- **Stream**: Represents an asynchronous sequence of values emitted over time, perfect for handling data that updates periodically.
+- **Publisher**: Allows objects to subscribe to changes in state or data, notifying subscribers when updates occur, ensuring your application responds dynamically to changes.
+- **Subscribing**: A protocol for objects that want to observe changes in state or data, making it easy to react to updates.
 
-### Swift Package Manager
+## Getting Started
 
-Add `Later` to your `Package.swift` file:
+To start using **Later**, follow our [Installation Guide](01-installation.md) which provides step-by-step instructions for adding **Later** to your Swift project using Swift Package Manager.
 
-```swift
-dependencies: [
-    .package(url: "https://github.com/0xLeif/Later.git", from: "1.0.0")
-]
-```
+After installation, explore our [Usage Overview](03-usage-overview.md) to see how to implement each of the key features in your own code. From simple examples to more in-depth explorations, these guides will help you integrate **Later** into your asynchronous workflows effectively.
 
-And add it to your target’s dependencies:
+## Documentation
 
-```swift
-.target(
-    name: "YourTarget",
-    dependencies: ["Later"]
-)
-```
+Here’s a breakdown of the **Later** documentation:
 
-## Usage
+- [Installation Guide](01-installation.md): Instructions on how to install **Later** using Swift Package Manager.
+- [Usage Overview](03-usage-overview.md): An overview of **Later**'s key features with example implementations.
+- Detailed Usage Guides:
+  - [SendableValue Usage](usage-sendablevalue.md)
+  - [Future Usage](usage-future.md)
+  - [Deferred Usage](usage-deferred.md)
+  - [Stream Usage](usage-stream.md)
+  - [Publisher and Subscribing Usage](usage-publisher.md)
+  - [Schedule Task Usage](usage-schedule-task.md)
+- [Contributing](contributing.md): Information on how to contribute to the **Later** project.
 
-### SendableValue
+## Next Steps
 
-SendableValue is a thread-safe value-type wrapper for a value that can be safely shared across concurrent tasks. It allows you to set and retrieve the value asynchronously.
-
-```swift
-let sendableValue = SendableValue<Int>(42)
-sendableValue.set(value: 100)
-let value = await sendableValue.value
-#expect(value == 100)
-```
-
-This ensures that the value is safely managed across different contexts, providing a simple way to handle mutable state in concurrent programming.
-
-### Future
-
-A `Future` represents a value that will be available asynchronously in the future.
-
-```swift
-import Later
-
-@Sendable func asyncTask() async throws -> String {
-    return "Hello"
-}
-
-let future = Future {
-    do {
-        let result = try await asyncTask()
-        return result
-    } catch {
-        throw error
-    }
-}
-
-do {
-    let result = try await future.value
-    print(result)  // Prints "Hello"
-} catch {
-    print("Error: \(error)")
-}
-```
-
-### Deferred
-
-A `Deferred` represents a value that will be computed and available asynchronously when explicitly started.
-
-```swift
-import Later
-
-@Sendable func asyncDeferredTask() async throws -> String {
-    return "Deferred Hello"
-}
-
-var deferred = Deferred {
-    do {
-        let result = try await asyncDeferredTask()
-        return result
-    } catch {
-        throw error
-    }
-}
-
-deferred.start()
-
-do {
-    let result = try await deferred.value
-    print(result)  // Prints "Deferred Hello"
-} catch {
-    print("Error: \(error)")
-}
-```
-
-### Stream
-
-A `Stream` represents an asynchronous sequence of values emitted over time.
-
-```swift
-import Later
-
-@Sendable func asyncStreamTask1() async throws -> String {
-    return "First value"
-}
-
-@Sendable func asyncStreamTask2() async throws -> String {
-    return "Second value"
-}
-
-let stream = Stream<String> { emitter in
-    do {
-        let value1 = try await asyncStreamTask1()
-        emitter.emit(value: value1)
-        let value2 = try await asyncStreamTask2()
-        emitter.emit(value: value2)
-    } catch {
-        // Handle error if necessary
-    }
-}
-
-Task {
-    for try await value in stream {
-        print(value)  // Prints "First value" and then "Second value"
-    }
-}
-```
-
-### Publisher and Subscribing
-
-A `Publisher` allows objects to subscribe to changes in data and notifies subscribers when the data changes.
-
-```swift
-import Later
-
-class MySubscriber: Subscribing {
-    typealias Value = String
-    
-    func didUpdate(newValue: String?) {
-        print("New value: \(String(describing: newValue))")
-    }
-}
-
-let subscriber = MySubscriber()
-let publisher = Publisher(initialValue: "Initial value", subscribers: [subscriber])
-
-// Using Future with Publisher
-let future = await publisher.future(
-    didSucceed: nil,
-    didFail: nil,
-    task: {
-        return "Future value"
-    }
-)
-
-do {
-    let value = try await future.value
-    print("Future completed with value: \(value)")
-} catch {
-    print("Future failed with error: \(error)")
-}
-
-// Using Deferred with Publisher
-var deferred = await publisher.deferred(
-    didSucceed: nil,
-    didFail: nil,
-    task: {
-        return "Deferred value"
-    }
-)
-
-deferred.start()
-
-do {
-    let value = try await deferred.value
-    print("Deferred completed with value: \(value)")
-} catch {
-    print("Deferred failed with error: \(error)")
-}
-
-// Using Stream with Publisher
-let stream = await publisher.stream(
-    didSucceed: nil,
-    didFail: nil,
-    task: { emitter in
-        emitter.emit(value: "Stream value 1")
-        emitter.emit(value: "Stream value 2")
-    }
-)
-
-var streamValues: [String] = []
-for try await value in stream {
-    streamValues.append(value)
-    print("Stream emitted value: \(value)")
-}
-
-print("Stream completed with values: \(streamValues)")
-```
-
-### Schedule Task
-
-You can schedule tasks to be executed after a specified duration using the `Task` extension.
-
-Availability: `@available(macOS 13.0, iOS 16.0, watchOS 9.0, tvOS 16.0, *)`
-
-```swift
-import Later
-
-func asyncScheduledTask() async throws {
-    print("Task executed")
-}
-
-do {
-    try await Task.schedule(for: .seconds(5)) {
-        try await asyncScheduledTask()
-    }
-} catch {
-    print("Failed to execute task: \(error)")
-}
-```
-
-## Contributing
-
-Contributions are welcome! Please feel free to submit a pull request or open an issue if you have any suggestions or bug reports. Please create an issue before submitting any pull request to make sure the work isn’t already being worked on by someone else.
+To continue, head over to our [Installation Guide](01-installation.md) and get **Later** set up in your project. After installation, you can dive into the [Usage Overview](03-usage-overview.md) to see how to start leveraging the power of asynchronous programming with **Later**.
