@@ -43,16 +43,6 @@ final public class Stream<Value: Sendable>: AsyncSequence, Sendable {
         self.init(emitAction: nil, didSucceed: didSucceed, didFail: didFail, task: task)
     }
 
-    /// Executes a given task for each value emitted by the stream.
-    /// - Parameter task: The task to be executed for each value.
-    public func forEach(
-        do task: @escaping (Value) async throws -> Void
-    ) async throws {
-        for try await value in self {
-            try await task(value)
-        }
-    }
-
     /// Transforms the values emitted by the stream using a given closure.
     /// - Parameter transform: The closure to transform each value.
     /// - Returns: A new stream with the transformed values.
