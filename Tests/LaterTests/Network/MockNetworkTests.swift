@@ -4,7 +4,7 @@ import XCTest
 final class MockNetworkTests: XCTestCase {
     var url: URL {
         get throws {
-            try XCTUnwrap(URL(string: Self.self.description()))
+            try XCTUnwrap(URL(string: "\(Self.self)"))
         }
     }
 
