@@ -1,4 +1,7 @@
 import Foundation
+#if canImport(FoundationNetworking)
+import FoundationNetworking
+#endif
 
 /// An open class that defines the base API. It will request data from a network pointing to a specific API endpoint.
 open class API<APIEndpoint: Endpoint> {

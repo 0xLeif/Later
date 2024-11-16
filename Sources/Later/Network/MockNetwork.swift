@@ -1,4 +1,7 @@
 import Foundation
+#if canImport(FoundationNetworking)
+import FoundationNetworking
+#endif
 
 /// A class that implements the `Networking` protocol to provide mock network responses.
 open class MockNetwork: Network {

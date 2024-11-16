@@ -1,4 +1,7 @@
 import Foundation
+#if canImport(FoundationNetworking)
+import FoundationNetworking
+#endif
 
 /// A class that implements the `Networking` protocol to perform network requests using URLSession.
 open class Network: Networking {
