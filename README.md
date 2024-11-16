@@ -12,6 +12,11 @@
 - **Stream**: Represents an asynchronous sequence of values emitted over time, perfect for handling data that updates periodically.
 - **Publisher**: Allows objects to subscribe to changes in state or data, notifying subscribers when updates occur, ensuring your application responds dynamically to changes.
 - **Subscribing**: A protocol for objects that want to observe changes in state or data, making it easy to react to updates.
+- **Simple and Intuitive API**: Make various HTTP requests (GET, POST, PUT, DELETE, etc.) with ease.
+- **Flexible Request Handling**: Comprehensive support for request headers, URL encoding, and request bodies.
+- **Asynchronous Requests**: Utilize Swift's `async/await` syntax for asynchronous network requests.
+- **Customizable URLSession**: Customize and configure URLSession with default or custom configurations.
+- **Mocking Support**: Easily mock network requests for simplified testing and development.
 
 ## Getting Started
 
@@ -32,6 +37,7 @@ Here’s a breakdown of the **Later** documentation:
   - [Stream Usage](documentation/usage-stream.md)
   - [Publisher and Subscribing Usage](documentation/usage-publisher.md)
   - [Schedule Task Usage](documentation/usage-schedule-task.md)
+  - [Networking](documentation/networking.md)
 - [Contributing](documentation/contributing.md): Information on how to contribute to the **Later** project.
 
 ## Next Steps
