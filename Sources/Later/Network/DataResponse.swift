@@ -4,7 +4,7 @@ import FoundationNetworking
 #endif
 
 /// Represents a response containing data and a URL response.
-public struct DataResponse {
+public struct DataResponse: Sendable {
     /// The data received in the response.
     public let data: Data?
 

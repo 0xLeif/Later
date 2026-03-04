@@ -4,7 +4,7 @@ import FoundationNetworking
 #endif
 
 /// A protocol defining networking methods for making HTTP requests.
-public protocol Networking {
+public protocol Networking: Sendable {
     /// Sends an HTTP request to the specified URL.
     /// - Parameters:
     ///   - url: The URL to which the request will be sent.

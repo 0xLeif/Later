@@ -15,7 +15,7 @@
 
  This will return a mock response using the data provided in the mockEndpoint body.
  */
-open class MockAPI<APIEndpoint: Endpoint>: API<APIEndpoint> {
+open class MockAPI<APIEndpoint: Endpoint>: API<APIEndpoint>, @unchecked Sendable {
     /**
 
     Sends an asynchronous network request to a specific API endpoint using a mock network.

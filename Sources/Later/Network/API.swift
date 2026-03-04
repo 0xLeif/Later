@@ -4,7 +4,7 @@ import FoundationNetworking
 #endif
 
 /// An open class that defines the base API. It will request data from a network pointing to a specific API endpoint.
-open class API<APIEndpoint: Endpoint> {
+open class API<APIEndpoint: Endpoint>: @unchecked Sendable {
     private let network: Networking
 
     /// Initializes a new instance of the API class.
