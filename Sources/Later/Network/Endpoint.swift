@@ -16,7 +16,7 @@ import FoundationNetworking
     - `headers`: The HTTP headers to include in the request.
     - `body`: The body of the HTTP request, if any.
  */
-public protocol Endpoint: Hashable {
+public protocol Endpoint: Hashable, Sendable {
     /// The base URL for the endpoint.
     static var url: URL { get }
 

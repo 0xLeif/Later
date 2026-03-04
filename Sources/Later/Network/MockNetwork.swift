@@ -4,7 +4,7 @@ import FoundationNetworking
 #endif
 
 /// A class that implements the `Networking` protocol to provide mock network responses.
-open class MockNetwork: Network {
+open class MockNetwork: Network, @unchecked Sendable {
     private let responseData: Data?
     private let response: URLResponse?
 

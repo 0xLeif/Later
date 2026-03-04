@@ -1,5 +1,5 @@
 /// Represents HTTP request methods.
-public enum HTTPRequestMethod: String {
+public enum HTTPRequestMethod: String, Sendable {
     /// The HTTP GET method.
     case GET
 
