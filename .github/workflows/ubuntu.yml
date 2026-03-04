@@ -6,6 +6,8 @@ name: Ubuntu
 on:
   push:
     branches: ["**"]
+  pull_request:
+    branches: ["main"]
 
 jobs:
   build:
@@ -15,7 +17,7 @@ jobs:
       - uses: sersoft-gmbh/swifty-linux-action@v3
         with:
           release-version: 6.0
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: Build for release
         run: swift build -v -c release
       - name: Test
