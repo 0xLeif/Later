@@ -6,17 +6,15 @@ name: Ubuntu
 on:
   push:
     branches: ["**"]
-  pull_request:
-    branches: ["main"]
 
 jobs:
   build:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
 
     steps:
-      - uses: sersoft-gmbh/swifty-linux-action@v3
+      - uses: swift-actions/setup-swift@v2
         with:
-          release-version: 6.0
+          swift-version: "6.0"
       - uses: actions/checkout@v4
       - name: Build for release
         run: swift build -v -c release

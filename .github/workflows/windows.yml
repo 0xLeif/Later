@@ -3,8 +3,6 @@ name: Windows
 on:
   push:
     branches: ["**"]
-  pull_request:
-    branches: ["main"]
 
 jobs:
   build:
@@ -12,8 +10,8 @@ jobs:
     steps:
       - uses: compnerd/gha-setup-swift@main
         with:
-          branch: swift-6.0-release
-          tag: 6.0-RELEASE
+          branch: swift-6.1-release
+          tag: 6.1-RELEASE
   
       - uses: actions/checkout@v4
       - run: swift build
